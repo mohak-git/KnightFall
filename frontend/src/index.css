@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+    --background-color: #d1d5db;
+    --text-color: #000000cc;
+}
+
+[theme="dark"] {
+    --background-color: #000000cc;
+    --text-color: #d1d5db;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #00ffff, #00bfff, #008b8b);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-corner {
+    display: hidden;
+}

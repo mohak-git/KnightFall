@@ -4,4 +4,5 @@ export const DEFAULT_USER_AVATAR_FILE_PATH = `https://res.cloudinary.com/${proce
 export const COOKIE_OPTIONS = {
     httpOnly: true,
     secure: true,
+    sameSite: "None",
 };

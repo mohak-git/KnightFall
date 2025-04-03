@@ -4,9 +4,9 @@ const UserProfile = ({ profile }) => {
     const { pgn } = useGame();
     const wrapperClass = pgn
         ? "w-full h-[30%] flex-col items-center justify-center"
-        : "w-1/3 h-full items-end";
+        : "w-full h-2/5 sm:w-1/3 sm:h-full items-end";
     const imageClass = pgn
-        ? "h-[85px] w-[85px] rounded-full"
+        ? "h-[60px] sm:h-[85px] w-[60px] sm:w-[85px] rounded-full"
         : "w-full h-full absolute rounded-3xl";
 
     return (

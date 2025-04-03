@@ -6,7 +6,7 @@ const PlayContent = () => {
     const { game, board, socketRef, userColor, isGameActive } = useChessGame();
 
     return (
-        <div className="h-4/5 w-5/6 flex justify-between items-center">
+        <div className="min-h-4/5 sm:w-5/6 flex flex-col sm:flex-row justify-between items-center py-6">
             <Chessboard
                 size="large"
                 game={game}

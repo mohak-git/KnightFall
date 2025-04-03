@@ -33,7 +33,7 @@ const Register = () => {
     return (
         <div className="h-screen w-screen grid place-items-center">
             <form
-                className="border-2 h-150 w-120 flex flex-col items-center justify-center"
+                className="border-2 h-150 w-100 md:w-120 flex flex-col items-center justify-center gap-5"
                 onSubmit={handleSubmit}
             >
                 <div className="h-1/7 w-3/5 flex justify-center items-center text-3xl">
@@ -41,15 +41,15 @@ const Register = () => {
                 </div>
 
                 <div
-                    className="h-1/2 w-3/5 flex flex-col justify-evenly *:flex *:items-center *:justify-between
+                    className="h-3/5 md:w-3/5 flex flex-col justify-center gap-9 *:flex *:items-center *:justify-between
                 "
                 >
                     <label>
-                        Email : {"  "}
+                        Email :
                         <input
                             type="email"
                             name="email"
-                            className="border-1 h-8 p-2 rounded-[5px]"
+                            className="border h-8 p-2 rounded-[5px]"
                             value={details.email}
                             onChange={handleDataChange}
                             required
@@ -57,11 +57,11 @@ const Register = () => {
                     </label>
 
                     <label>
-                        Username : {"  "}
+                        Username :
                         <input
                             type="text"
                             name="username"
-                            className="border-1 h-8 p-2 rounded-[5px]"
+                            className="border h-8 p-2 rounded-[5px]"
                             value={details.username}
                             onChange={handleDataChange}
                             required
@@ -69,11 +69,11 @@ const Register = () => {
                     </label>
 
                     <label>
-                        Password :{" "}
+                        Password :
                         <input
                             type="password"
                             name="password"
-                            className="border-1 h-8 p-2 rounded-[5px]"
+                            className="border h-8 p-2 rounded-[5px]"
                             value={details.password}
                             onChange={handleDataChange}
                             required
@@ -81,40 +81,35 @@ const Register = () => {
                     </label>
 
                     <label>
-                        Avatar :{" "}
+                        Avatar :
                         <input
                             type="file"
                             name="avatar"
-                            className="border-1 w-50 h-20 rounded-[5px]"
+                            className="border w-60 sm:w-50 rounded-[5px]"
                             accept="image/*"
                             onChange={handleFileChange}
                             required
                         />
                     </label>
-                </div>
-                <div className="h-1/10 w-3/5 flex items-center justify-center">
-                    <button
-                        type="submit"
-                        className="border-1 px-2 py-1 rounded-full"
-                    >
-                        {registerMutation.isPending ? "Loading..." : "Register"}
-                    </button>
+                    
+                    <div className="h-1/10 w-3/5 place-self-center grid justify-center! ">
+                        <button
+                            type="submit"
+                            className="border px-2 py-1 rounded-full"
+                            disabled={registerMutation.isPending}
+                        >
+                            Register
+                        </button>
+                    </div>
                 </div>
 
-                {registerMutation.isError && (
-                    <p className="text-red-500 text-sm mt-2">
-                        {registerMutation.error?.response?.data?.message ||
-                            "Registration failed"}
-                    </p>
-                )}
-
-                <div className="border-t w-full flex items-center justify-center mt-10 pt-5 gap-10">
-                    <span className="text-xs">Already registered? </span>
+                <div className="text-xs">
+                    Already registered?
                     <Link
                         to="/login"
-                        className="border text-lg px-2 rounded-full"
+                        className="text-lg px-2 rounded-full hover:text-sky-400 transition-all duration-300"
                     >
-                        Login
+                        <em>Login</em>
                     </Link>
                 </div>
             </form>

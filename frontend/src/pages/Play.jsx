@@ -27,7 +27,9 @@ const PlayWrapper = () => {
     return opponentJoined ? (
         <PlayContent />
     ) : (
-        <div className="animate-bounce text-3xl font-serif">Waiting for opponent...</div>
+        <div className="animate-bounce text-xl sm:text-3xl font-serif">
+            Waiting for opponent...
+        </div>
     );
 };
 

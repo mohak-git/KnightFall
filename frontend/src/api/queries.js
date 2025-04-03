@@ -8,18 +8,19 @@ import {
     joinRandomGame,
     refreshUserTokens,
 } from "../services/axios";
+import { toast } from "react-toastify";
 
 const useGetProfile = (username) => {
     return useQuery({
         queryKey: ["profile", username],
-        queryFn: async () => await getUser(username),
+        queryFn: () => getUser(username),
     });
 };
 
 const useRefreshTokens = () => {
     return useQuery({
         queryKey: "tokens",
-        queryFn: async () => await refreshUserTokens(),
+        queryFn: () => refreshUserTokens(),
         enabled: false,
     });
 };
@@ -27,14 +28,20 @@ const useRefreshTokens = () => {
 const useGetGames = (username) => {
     return useQuery({
         queryKey: ["allGames", username],
-        queryFn: async () => await getUserGames(username),
+        queryFn: () => getUserGames(username),
     });
 };
 
 const useCreateGame = () => {
     return useQuery({
         queryKey: ["newGame"],
-        queryFn: async () => await createGame(),
+        queryFn: () => {
+            return toast.promise(createGame(), {
+                pending: "Creating a new game...",
+                success: "Game created successfully!",
+                error: "Failed to create game!",
+            });
+        },
         enabled: false,
     });
 };
@@ -42,7 +49,17 @@ const useCreateGame = () => {
 const useJoinRandomGame = () => {
     return useQuery({
         queryKey: ["joinGame"],
-        queryFn: async () => await joinRandomGame(),
+        queryFn: () => {
+            return toast.promise(joinRandomGame(), {
+                pending: "Joining a random game...",
+                success: "Game joined successfully!",
+                error: {
+                    render({ data }) {
+                        return data?.response?.data?.message;
+                    },
+                },
+            });
+        },
         enabled: false,
     });
 };
@@ -50,7 +67,7 @@ const useJoinRandomGame = () => {
 const useGetGame = (gameId) => {
     return useQuery({
         queryKey: ["game", gameId],
-        queryFn: async () => await getCurrentGame(gameId),
+        queryFn: () => getCurrentGame(gameId),
         enabled: false,
         retry: false,
     });
@@ -59,7 +76,7 @@ const useGetGame = (gameId) => {
 const useGetLastGame = () => {
     return useQuery({
         queryKey: ["lastGame"],
-        queryFn: async () => await getLastGame(),
+        queryFn: () => getLastGame(),
     });
 };
 

@@ -5,7 +5,7 @@ const queryClient = new QueryClient({
         queries: {
             refetchOnWindowFocus: false,
             retry: (failureCount, error) =>
-                error?.response?.status !== 401 && failureCount < 3,
+                error?.response?.status !== 401 && failureCount < 1,
         },
     },
 });

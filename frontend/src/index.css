@@ -28,3 +28,8 @@ body {
 ::-webkit-scrollbar-corner {
     display: hidden;
 }
+
+input::file-selector-button {
+    font-weight: bold;
+    padding: 5px;
+}

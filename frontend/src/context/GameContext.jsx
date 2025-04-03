@@ -7,6 +7,7 @@ import {
     useMemo,
 } from "react";
 import { generateGameFromMoves, formatMoves } from "../utils/chessUtils";
+import { toast } from "react-toastify";
 
 const GameContext = createContext();
 
@@ -19,8 +20,19 @@ export const GameProvider = ({ games, children }) => {
 
     const handleGameSelection = useCallback(
         (index) => {
-            const moves = games[index]?.moves;
+            const gameDetails = games[index];
+            if (!gameDetails) return;
 
+            const gameResult =
+                gameDetails.status.split(" ")[0] === gameDetails.yourColour
+                    ? "won"
+                    : "lost";
+
+            toast.info(
+                `You ${gameResult} against ${gameDetails.opponent.username}.`,
+            );
+
+            const moves = gameDetails.moves;
             if (moves) setPgn(formatMoves(moves));
         },
         [games],

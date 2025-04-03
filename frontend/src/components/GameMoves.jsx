@@ -11,7 +11,7 @@ const GameMoves = ({ game, board, isGameActive }) => {
     }, [gameHistory]);
 
     return (
-        <div className="h-140 w-1/3 border rounded flex flex-col p-6 overflow-y-scroll">
+        <div className="h-100 sm:h-140 w-full sm:w-1/3 border rounded flex flex-col p-6 overflow-y-scroll">
             <h2 className="text-2xl font-semibold border-b pb-2">Game Moves</h2>
 
             {gameHistory?.length ? (

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChessPieces, coordsToSquare } from "../utils/chessUtils";
+import { toast } from "react-toastify";
 
 const Chessboard = ({ size, game, board, socket, userColor, isGameActive }) => {
     const [availableMoves, setAvailableMoves] = useState({
@@ -10,7 +11,9 @@ const Chessboard = ({ size, game, board, socket, userColor, isGameActive }) => {
     const [isDragging, setIsDragging] = useState(false);
 
     const boardSizeClass =
-        size === "small" ? "h-112 w-112 text-4xl" : "h-132 w-132 text-5xl";
+        size === "small"
+            ? "h-85 sm:h-112 w-85 sm:w-112 text-3xl sm:text-4xl"
+            : "h-80 w-80 sm:h-132 sm:w-132 text-3xl sm:text-5xl";
 
     const getSquareColor = (row, col) =>
         isGameActive
@@ -70,7 +73,7 @@ const Chessboard = ({ size, game, board, socket, userColor, isGameActive }) => {
         if (availableMoves.moves.includes(toSquare))
             executeMove(fromSquare, toSquare);
         else {
-            console.log("invalid move");
+            toast("Invalid move!");
             clearSelection();
         }
 
@@ -86,7 +89,10 @@ const Chessboard = ({ size, game, board, socket, userColor, isGameActive }) => {
                 executeMove(fromSquare, square);
             else if (piece && piece.color === game.turn())
                 handleSelection(square);
-            else clearSelection();
+            else {
+                toast("Invalid move!");
+                clearSelection();
+            }
         } else if (piece && piece.color === game.turn())
             handleSelection(square);
     };
@@ -135,7 +141,7 @@ const Chessboard = ({ size, game, board, socket, userColor, isGameActive }) => {
                                     className={`
                                         ${getPieceColor(piece)}
                                         ${userColor === "black" && "rotate-180"}
-                                        transition-all duration-200 ease-in-out transform
+                                        transition-all duration-200 ease-in-out transform 
                                         ${
                                             allChecksOkay &&
                                             "hover:scale-125 hover:-translate-y-2 hover:drop-shadow-xl"

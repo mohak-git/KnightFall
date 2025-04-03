@@ -2,17 +2,17 @@ import { useGame } from "../context/GameContext";
 
 const UserGames = () => {
     const { games, pgn, handleGameSelection } = useGame();
-    const wrapperClass = pgn ? "w-full h-100" : "w-2/3 h-150";
+    const wrapperClass = pgn ? "w-full h-100" : "w-full h-3/5 sm:w-2/3 sm:h-150";
 
     return (
         <div
-            className={`rounded-[20px] p-4 flex-col flex ${wrapperClass} overflow-y-scroll`}
+            className={`border-t-2 rounded-t-none rounded-[20px] p-4 flex-col flex ${wrapperClass} overflow-y-scroll`}
         >
             <h1
                 className={
                     pgn
                         ? "mb-4 text-center text-[25px]"
-                        : "mb-4 text-center text-5xl"
+                        : "mb-4 text-center text-3xl sm:text-5xl"
                 }
             >
                 Games
@@ -32,7 +32,7 @@ const UserGames = () => {
                         <li
                             key={i}
                             onClick={() => handleGameSelection(i)}
-                            className={`relative h-13 group w-full pr-4 pl-1 py-2 rounded-full overflow-hidden flex justify-between ${borderClasses} cursor-pointer`}
+                            className={`relative h-10 sm:h-13 group w-full pr-4 pl-1 py-2 rounded-full overflow-hidden flex justify-between ${borderClasses} cursor-pointer`}
                         >
                             <span
                                 className={`absolute ${gradientClasses} top-0 h-full w-0 group-hover:w-full transition-all duration-500`}
@@ -45,12 +45,11 @@ const UserGames = () => {
                                     <img
                                         src={opponent.avatar}
                                         alt=""
-                                        className="size-10 rounded-full"
+                                        className="size-6 sm:size-10 rounded-full"
                                     />
 
                                     <div className="flex flex-col justify-center items-center pb-1">
-                                        <span className="text-xs">Against</span>
-                                        <span className="text-3xl leading-5">
+                                        <span className="text-2xl leading-5">
                                             {opponent.username}
                                         </span>
                                     </div>

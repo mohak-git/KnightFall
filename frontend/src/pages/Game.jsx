@@ -19,7 +19,7 @@ const Play = () => {
     };
 
     return (
-        <div className="h-full w-full flex justify-center items-center gap-10 font-serif text-2xl">
+        <div className="h-full w-full flex flex-col sm:flex-row justify-center items-center gap-10 font-serif text-2xl ">
             <button
                 className="border px-4 py-2 rounded-md"
                 onClick={handleCreateGame}
